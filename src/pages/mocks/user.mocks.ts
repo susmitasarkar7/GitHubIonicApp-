@@ -2,18 +2,18 @@ import { User } from '../models/user.interface';
 
 const userList : User[] = [
     {
-        name: 'Susmita Sarkar',
+        name: 'Suman Sarkar',
         company: 'WDS',
         location: 'Kolkata, India',
-        bio: 'UI Developr',
+        bio: 'Software Developr',
         avatar_url: '.png',
         email: 'abc123@gmail.com'
     },
     {
-        name: 'John Doe',
+        name: 'Dwipraj Dutta',
         company: 'WDD',
         location: 'Pune, India',
-        bio: 'Web Developr',
+        bio: 'APP Developr',
         avatar_url: '.png',
         email: 'dev123@gmail.com'
     }

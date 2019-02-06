@@ -22,7 +22,7 @@ export class ProfileSearchResultPage {
   }
 
   getUserInformation():void {
-    // this.github.mockGetUserInformation(this.username).subscribe((data) => this.user = data);
+    this.github.mockGetUserInformation(this.username).subscribe((data: User) => this.user = data);
     
     this.github.mockGetUserInformation(this.username).subscribe(data => console.log(data));
   }

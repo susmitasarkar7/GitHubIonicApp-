@@ -7,7 +7,7 @@ import { IonicModule } from "ionic-angular";
         SearchResultsComponent
     ],
     imports: [
-        // IonicModule
+        IonicModule
     ],
     exports: [
         SearchResultsComponent
