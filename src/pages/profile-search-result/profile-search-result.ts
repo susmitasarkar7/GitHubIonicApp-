@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { GitHubServiceProvider } from "../../providers/git-hub-service/git-hub-service";
+import { IonicPage } from 'ionic-angular';
+// import { GitHubServiceProvider } from "../../providers/git-hub-service/git-hub-service";
 import { User } from "../../pages/models/user.interface";
 import { Repository } from '../models/repository.interface';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 /**
  * Generated class for the ProfileSearchResultPage page.
  *
@@ -11,7 +10,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
+@IonicPage({
+  segment: 'profile/results/:username'
+})
 @Component({
   selector: 'page-profile-search-result',
   templateUrl: 'profile-search-result.html',
@@ -21,12 +22,13 @@ export class ProfileSearchResultPage {
   user : User;
   repositories: Repository[];
 
-  constructor(private github: GitHubServiceProvider, private navCtrl: NavController, private navParams: NavParams) {
-  }
+  // constructor(private github: GitHubServiceProvider, private navCtrl: NavController, private navParams: NavParams) {
+  // }
 
   getUserInformation():void {
 
-    this.github.getUserInformation(this.username).subscribe((data: User) =>this.user = data);
+    // this.github.getUserInformation(this.username).subscribe((data: User) =>this.user = data);
+    // this.github.getRepositoryInformation(this.username).subscribe((data: Repository[]) => this.repositories = data);
 
     // this.github.mockGetUserInformation(this.username).subscribe((data: User) => this.user = data);
     
@@ -36,7 +38,7 @@ export class ProfileSearchResultPage {
   }
 
   ionViewWillLoad() {
-    this.username = this.navParams.get('username');
+    // this.username = this.navParams.get('username');
     if(this.username) {
       this.getUserInformation();
     }

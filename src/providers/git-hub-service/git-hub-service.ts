@@ -31,16 +31,23 @@ export class GitHubServiceProvider {
 
   getUserInformation(username: string): Observable<User> {
     return this.http.get(`${this.baseUrl}/${username}`)
-    
-    .do((data:Response) => console.log(data))
-    .map((data:Response) => data.json())
-    .do((data:Response) => console.log(data))
-    .catch((error:Response) => Observable.throw(error.json().error || "Server error."))
+    .do(this.logData)
+    .map(this.extractData)
+    .do(this.logData)
+    .catch(this.handleError)
+
+    // .do((data:Response) => console.log(data))
+    // .map((data:Response) => data.json())
+    // .do((data:Response) => console.log(data))
+    // .catch((error:Response) => Observable.throw(error.json().error || "Server error."))
   }
 
   getRepositoryInformation(username:string):Observable<Repository[]> {
-    return this.http.get(`${this.baseURL}/${username}/${this.reposUrl}`)
-
+    return this.http.get(`${this.baseUrl}/${username}/${this.reposUrl}`)
+    .do(this.logData)
+    .map(this.extractData)
+    .do(this.logData)
+    .catch(this.handleError)
   }
 
 /*
@@ -60,6 +67,14 @@ export class GitHubServiceProvider {
   mockGetUserInformation(username: string): Observable<User> {
     return Observable.of(USER_LIST.filter(user => user.name === username)[0]);
   } 
+
+  private handleError(error: Response | any) {
+    return Observable.throw(error.json().error || "Server error.")
+  }
+
+  private extractData(response : Response) {
+    return response.json();
+  }
 
   private logData(response : Response) {
     console.log(response);
